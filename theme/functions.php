@@ -8,11 +8,6 @@
  * @package numera_theme
  */
 
-// echo '<pre>';
-// var_dump(get_post_type(60));
-// echo '</pre>';
-// die();
-
 if (! defined('NUMERA_THEME_VERSION')) {
 	/*
 	 * Set the theme’s version number.
