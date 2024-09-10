@@ -219,6 +219,11 @@ function enqueue_scripts()
 		'ajax_url' => admin_url('admin-ajax.php'),
 		'nonce'    => wp_create_nonce('create_map_nonce')
 	));
+
+
+	if (is_home()) {
+		wp_enqueue_script("template-map-search", get_theme_file_uri() . "/js/template-map-search.js");
+	}
 }
 add_action('wp_enqueue_scripts', 'enqueue_scripts');
 
