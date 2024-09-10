@@ -65,8 +65,14 @@
 			<button id="create-placa-button" class="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none mt-4">
 				Criar Placa e Telefone
 			</button>
-			<a href="<?php echo get_post_type_archive_link('mapas'); ?>" class="mt-4 w-full inline-block bg-blue-600 text-white py-2 px-4 rounded-md text-center hover:bg-blue-700 focus:outline-none">
+			<a href="/" class="mt-4 w-full inline-block bg-blue-600 text-white py-2 px-4 rounded-md text-center hover:bg-blue-700 focus:outline-none">
 				Ver Mapas
+			</a>
+			<a href="/enderecos" class="mt-4 w-full inline-block bg-blue-600 text-white py-2 px-4 rounded-md text-center hover:bg-blue-700 focus:outline-none">
+				Endereços
+			</a>
+			<a href="/empresas" class="mt-4 w-full inline-block bg-blue-600 text-white py-2 px-4 rounded-md text-center hover:bg-blue-700 focus:outline-none">
+				Empresarial
 			</a>
 		</div>
 	</div>
