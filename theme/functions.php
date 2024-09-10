@@ -1,4 +1,5 @@
 <?php
+
 /**
  * numera_theme functions and definitions
  *
@@ -7,7 +8,7 @@
  * @package numera_theme
  */
 
-if ( ! defined( 'NUMERA_THEME_VERSION' ) ) {
+if (! defined('NUMERA_THEME_VERSION')) {
 	/*
 	 * Set the theme’s version number.
 	 *
@@ -15,10 +16,10 @@ if ( ! defined( 'NUMERA_THEME_VERSION' ) ) {
 	 * to create your production build, the value below will be replaced in the
 	 * generated zip file with a timestamp, converted to base 36.
 	 */
-	define( 'NUMERA_THEME_VERSION', '0.1.0' );
+	define('NUMERA_THEME_VERSION', '0.1.0');
 }
 
-if ( ! defined( 'NUMERA_THEME_TYPOGRAPHY_CLASSES' ) ) {
+if (! defined('NUMERA_THEME_TYPOGRAPHY_CLASSES')) {
 	/*
 	 * Set Tailwind Typography classes for the front end, block editor and
 	 * classic editor using the constant below.
@@ -42,7 +43,7 @@ if ( ! defined( 'NUMERA_THEME_TYPOGRAPHY_CLASSES' ) ) {
 	);
 }
 
-if ( ! function_exists( 'numera_theme_setup' ) ) :
+if (! function_exists('numera_theme_setup')) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -50,17 +51,18 @@ if ( ! function_exists( 'numera_theme_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function numera_theme_setup() {
+	function numera_theme_setup()
+	{
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
 		 * If you're building a theme based on numera_theme, use a find and replace
 		 * to change 'numera_theme' to the name of your theme in all the template files.
 		 */
-		load_theme_textdomain( 'numera_theme', get_template_directory() . '/languages' );
+		load_theme_textdomain('numera_theme', get_template_directory() . '/languages');
 
 		// Add default posts and comments RSS feed links to head.
-		add_theme_support( 'automatic-feed-links' );
+		add_theme_support('automatic-feed-links');
 
 		/*
 		 * Let WordPress manage the document title.
@@ -68,20 +70,20 @@ if ( ! function_exists( 'numera_theme_setup' ) ) :
 		 * hard-coded <title> tag in the document head, and expect WordPress to
 		 * provide it for us.
 		 */
-		add_theme_support( 'title-tag' );
+		add_theme_support('title-tag');
 
 		/*
 		 * Enable support for Post Thumbnails on posts and pages.
 		 *
 		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		 */
-		add_theme_support( 'post-thumbnails' );
+		add_theme_support('post-thumbnails');
 
 		// This theme uses wp_nav_menu() in two locations.
 		register_nav_menus(
 			array(
-				'menu-1' => __( 'Primary', 'numera_theme' ),
-				'menu-2' => __( 'Footer Menu', 'numera_theme' ),
+				'menu-1' => __('Primary', 'numera_theme'),
+				'menu-2' => __('Footer Menu', 'numera_theme'),
 			)
 		);
 
@@ -103,35 +105,36 @@ if ( ! function_exists( 'numera_theme_setup' ) ) :
 		);
 
 		// Add theme support for selective refresh for widgets.
-		add_theme_support( 'customize-selective-refresh-widgets' );
+		add_theme_support('customize-selective-refresh-widgets');
 
 		// Add support for editor styles.
-		add_theme_support( 'editor-styles' );
+		add_theme_support('editor-styles');
 
 		// Enqueue editor styles.
-		add_editor_style( 'style-editor.css' );
-		add_editor_style( 'style-editor-extra.css' );
+		add_editor_style('style-editor.css');
+		add_editor_style('style-editor-extra.css');
 
 		// Add support for responsive embedded content.
-		add_theme_support( 'responsive-embeds' );
+		add_theme_support('responsive-embeds');
 
 		// Remove support for block templates.
-		remove_theme_support( 'block-templates' );
+		remove_theme_support('block-templates');
 	}
 endif;
-add_action( 'after_setup_theme', 'numera_theme_setup' );
+add_action('after_setup_theme', 'numera_theme_setup');
 
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function numera_theme_widgets_init() {
+function numera_theme_widgets_init()
+{
 	register_sidebar(
 		array(
-			'name'          => __( 'Footer', 'numera_theme' ),
+			'name'          => __('Footer', 'numera_theme'),
 			'id'            => 'sidebar-1',
-			'description'   => __( 'Add widgets here to appear in your footer.', 'numera_theme' ),
+			'description'   => __('Add widgets here to appear in your footer.', 'numera_theme'),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
 			'before_title'  => '<h2 class="widget-title">',
@@ -139,26 +142,28 @@ function numera_theme_widgets_init() {
 		)
 	);
 }
-add_action( 'widgets_init', 'numera_theme_widgets_init' );
+add_action('widgets_init', 'numera_theme_widgets_init');
 
 /**
  * Enqueue scripts and styles.
  */
-function numera_theme_scripts() {
-	wp_enqueue_style( 'numera_theme-style', get_stylesheet_uri(), array(), NUMERA_THEME_VERSION );
-	wp_enqueue_script( 'numera_theme-script', get_template_directory_uri() . '/js/script.min.js', array(), NUMERA_THEME_VERSION, true );
+function numera_theme_scripts()
+{
+	wp_enqueue_style('numera_theme-style', get_stylesheet_uri(), array(), NUMERA_THEME_VERSION);
+	wp_enqueue_script('numera_theme-script', get_template_directory_uri() . '/js/script.min.js', array(), NUMERA_THEME_VERSION, true);
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
+	if (is_singular() && comments_open() && get_option('thread_comments')) {
+		wp_enqueue_script('comment-reply');
 	}
 }
-add_action( 'wp_enqueue_scripts', 'numera_theme_scripts' );
+add_action('wp_enqueue_scripts', 'numera_theme_scripts');
 
 /**
  * Enqueue the block editor script.
  */
-function numera_theme_enqueue_block_editor_script() {
-	if ( is_admin() ) {
+function numera_theme_enqueue_block_editor_script()
+{
+	if (is_admin()) {
 		wp_enqueue_script(
 			'numera_theme-editor',
 			get_template_directory_uri() . '/js/block-editor.min.js',
@@ -169,10 +174,10 @@ function numera_theme_enqueue_block_editor_script() {
 			NUMERA_THEME_VERSION,
 			true
 		);
-		wp_add_inline_script( 'numera_theme-editor', "tailwindTypographyClasses = '" . esc_attr( NUMERA_THEME_TYPOGRAPHY_CLASSES ) . "'.split(' ');", 'before' );
+		wp_add_inline_script('numera_theme-editor', "tailwindTypographyClasses = '" . esc_attr(NUMERA_THEME_TYPOGRAPHY_CLASSES) . "'.split(' ');", 'before');
 	}
 }
-add_action( 'enqueue_block_assets', 'numera_theme_enqueue_block_editor_script' );
+add_action('enqueue_block_assets', 'numera_theme_enqueue_block_editor_script');
 
 /**
  * Add the Tailwind Typography classes to TinyMCE.
@@ -180,11 +185,12 @@ add_action( 'enqueue_block_assets', 'numera_theme_enqueue_block_editor_script' )
  * @param array $settings TinyMCE settings.
  * @return array
  */
-function numera_theme_tinymce_add_class( $settings ) {
+function numera_theme_tinymce_add_class($settings)
+{
 	$settings['body_class'] = NUMERA_THEME_TYPOGRAPHY_CLASSES;
 	return $settings;
 }
-add_filter( 'tiny_mce_before_init', 'numera_theme_tinymce_add_class' );
+add_filter('tiny_mce_before_init', 'numera_theme_tinymce_add_class');
 
 /**
  * Custom template tags for this theme.
@@ -198,12 +204,14 @@ require get_template_directory() . '/inc/template-functions.php';
 
 //--------------------------------------------------------------------------------------------------------------
 
-function enqueue_dashicons() {
+function enqueue_dashicons()
+{
 	wp_enqueue_style('dashicons');
 }
 add_action('wp_enqueue_scripts', 'enqueue_dashicons');
 
-function enqueue_scripts() {
+function enqueue_scripts()
+{
 	wp_enqueue_script('my-custom-script', get_template_directory_uri() . '/js/custom-script.js', array('jquery'), null, true);
 
 	// Localize script para passar o nonce ao JavaScript
@@ -218,7 +226,8 @@ add_action('wp_enqueue_scripts', 'enqueue_scripts');
 require get_template_directory() . '/inc/Numerologia.php';
 
 // Função para restringir o acesso a membros logados
-function restrict_access_to_members() {
+function restrict_access_to_members()
+{
 	if (!is_user_logged_in() && !is_page('login')) {
 		wp_redirect(site_url('/login/'));
 		exit();
@@ -230,7 +239,8 @@ add_action('template_redirect', 'restrict_access_to_members');
 require get_template_directory() . '/inc/custom-posts.php';
 
 // Função para criar um novo mapa via AJAX
-function create_map_ajax_handler() {
+function create_map_ajax_handler()
+{
 	// Verifique o nonce
 	if (!isset($_POST['security']) || !wp_verify_nonce($_POST['security'], 'create_map_nonce')) {
 		wp_send_json_error('Verificação de segurança falhou, por favor tente novamente.');
@@ -279,7 +289,8 @@ function create_map_ajax_handler() {
 add_action('wp_ajax_create_map', 'create_map_ajax_handler');
 
 // Função para criar uma nova placa via AJAX
-function create_placa_ajax_handler() {
+function create_placa_ajax_handler()
+{
 	// Verifique o nonce
 	if (!isset($_POST['security']) || !wp_verify_nonce($_POST['security'], 'create_placa_nonce')) {
 		wp_send_json_error('Verificação de segurança falhou, por favor tente novamente.');
@@ -331,7 +342,8 @@ add_action('wp_ajax_create_placa', 'create_placa_ajax_handler');
 
 
 // Função para baixar o conteúdo do mapa em formato Word
-function download_word() {
+function download_word()
+{
 	if (isset($_GET['mapa_id'])) {
 		$mapa_id = intval($_GET['mapa_id']);
 		$mapa_title = get_the_title($mapa_id);
@@ -376,7 +388,8 @@ add_action('init', 'download_word');
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
-function download_pdf() {
+function download_pdf()
+{
 	if (isset($_GET['mapa_id'])) {
 		$mapa_id = intval($_GET['mapa_id']);
 		$mapa_content = apply_filters('the_content', get_post_field('post_content', $mapa_id));
@@ -406,7 +419,8 @@ function download_pdf() {
 add_action('init', 'download_pdf');
 
 // Função para bloquear o acesso ao admin para assinantes e redirecioná-los
-function block_wp_admin_access() {
+function block_wp_admin_access()
+{
 	if (current_user_can('subscriber') && (is_admin() || strpos($_SERVER['PHP_SELF'], 'wp-login.php') !== false)) {
 		wp_redirect(home_url());
 		exit;
@@ -415,7 +429,8 @@ function block_wp_admin_access() {
 add_action('init', 'block_wp_admin_access');
 
 // Função para salvar os metadados dos mapas
-function salvar_meta_mapas() {
+function salvar_meta_mapas()
+{
 	check_ajax_referer('salvar_meta_mapas_nonce', 'security');
 
 	$post_id = intval($_POST['post_id']);
@@ -430,7 +445,8 @@ function salvar_meta_mapas() {
 }
 add_action('wp_ajax_save_map_meta', 'salvar_meta_mapas');
 
-function salvar_meta_placas() {
+function salvar_meta_placas()
+{
 	check_ajax_referer('salvar_meta_placas_nonce', 'security');
 
 	$post_id = intval($_POST['post_id']);
@@ -449,14 +465,16 @@ add_action('wp_ajax_save_placa_meta', 'salvar_meta_placas');
 
 
 // Função para remover a barra de administração para usuários não administradores
-function remover_admin_bar_para_usuarios() {
+function remover_admin_bar_para_usuarios()
+{
 	if (!current_user_can('administrator') && !is_admin()) {
 		show_admin_bar(false);
 	}
 }
 add_action('after_setup_theme', 'remover_admin_bar_para_usuarios');
 
-function search_mapas() {
+function search_mapas()
+{
 	// Verifica se o usuário está logado
 	if (!is_user_logged_in()) {
 		wp_send_json_error('Você precisa estar logado para ver seus mapas.');
@@ -512,4 +530,3 @@ function search_mapas() {
 }
 add_action('wp_ajax_search_mapas', 'search_mapas');
 add_action('wp_ajax_nopriv_search_mapas', 'search_mapas');
-
